@@ -38,12 +38,14 @@ class _FormPageState extends State<FormPage> {
 
   void _submit() {
     if (_formKey.currentState?.validate() ?? false) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => DetailsPage(
-          firstName: _firstNameCtrl.text.trim(),
-          lastName: _lastNameCtrl.text.trim(),
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => DetailsPage(
+            firstName: _firstNameCtrl.text.trim(),
+            lastName: _lastNameCtrl.text.trim(),
+          ),
         ),
-      ));
+      );
     }
   }
 
@@ -62,14 +64,16 @@ class _FormPageState extends State<FormPage> {
                 key: const Key('firstNameField'),
                 controller: _firstNameCtrl,
                 decoration: const InputDecoration(labelText: 'Prénom'),
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Requis' : null,
+                validator: (v) =>
+                    (v == null || v.trim().isEmpty) ? 'Requis' : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 key: const Key('lastNameField'),
                 controller: _lastNameCtrl,
                 decoration: const InputDecoration(labelText: 'Nom'),
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Requis' : null,
+                validator: (v) =>
+                    (v == null || v.trim().isEmpty) ? 'Requis' : null,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -89,7 +93,11 @@ class DetailsPage extends StatefulWidget {
   final String firstName;
   final String lastName;
 
-  const DetailsPage({super.key, required this.firstName, required this.lastName});
+  const DetailsPage({
+    super.key,
+    required this.firstName,
+    required this.lastName,
+  });
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -99,9 +107,9 @@ class _DetailsPageState extends State<DetailsPage> {
   int _counter = 0;
 
   void _showSnackbar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Ceci est un Snackbar')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Ceci est un Snackbar')));
   }
 
   void _showDialog() {
@@ -111,7 +119,10 @@ class _DetailsPageState extends State<DetailsPage> {
         title: const Text('Dialogue'),
         content: const Text('Ceci est une boîte de dialogue simple.'),
         actions: [
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Fermer')),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Fermer'),
+          ),
         ],
       ),
     );
@@ -126,27 +137,36 @@ class _DetailsPageState extends State<DetailsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Prénom: ${widget.firstName}', style: const TextStyle(fontSize: 18)),
+            Text(
+              'Prénom: ${widget.firstName}',
+              style: const TextStyle(fontSize: 18),
+            ),
             const SizedBox(height: 8),
-            Text('Nom: ${widget.lastName}', style: const TextStyle(fontSize: 18)),
+            Text(
+              'Nom: ${widget.lastName}',
+              style: const TextStyle(fontSize: 18),
+            ),
             const SizedBox(height: 20),
-            Wrap(spacing: 12, children: [
-              ElevatedButton(
-                key: const Key('snackButton'),
-                onPressed: _showSnackbar,
-                child: const Text('Afficher Snackbar'),
-              ),
-              ElevatedButton(
-                key: const Key('incrementButton'),
-                onPressed: () => setState(() => _counter++),
-                child: const Text('Incrémenter compteur'),
-              ),
-              ElevatedButton(
-                key: const Key('dialogButton'),
-                onPressed: _showDialog,
-                child: const Text('Afficher dialogue'),
-              ),
-            ]),
+            Wrap(
+              spacing: 12,
+              children: [
+                ElevatedButton(
+                  key: const Key('snackButton'),
+                  onPressed: _showSnackbar,
+                  child: const Text('Afficher Snackbar'),
+                ),
+                ElevatedButton(
+                  key: const Key('incrementButton'),
+                  onPressed: () => setState(() => _counter++),
+                  child: const Text('Incrémenter compteur'),
+                ),
+                ElevatedButton(
+                  key: const Key('dialogButton'),
+                  onPressed: _showDialog,
+                  child: const Text('Afficher dialogue'),
+                ),
+              ],
+            ),
             const SizedBox(height: 20),
             Text('Compteur: $_counter', key: const Key('counterText')),
             const SizedBox(height: 20),

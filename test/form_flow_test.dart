@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:github_action_tuto/main.dart';
 
 void main() {
-  testWidgets('Form submission navigates to details and buttons work', (tester) async {
+  testWidgets('Form submission navigates to details and buttons work', (
+    tester,
+  ) async {
     await tester.pumpWidget(const MyApp());
 
     // Enter first and last name
