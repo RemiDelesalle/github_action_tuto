@@ -12,8 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Form Base Project',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const FormPage(),
-    );
+      home: const FormPage(),);
   }
 }
 
